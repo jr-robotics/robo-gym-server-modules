@@ -1,0 +1,4 @@
+#!/bin/bash
+
+tmux -L ServerManager kill-server
+tmux kill-server

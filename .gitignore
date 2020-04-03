@@ -1,0 +1,11 @@
+*.swp
+*.pyc
+*.py~
+*.ipynb_checkpoints
+
+robo_gym_server_manager/grpc_msgs/python3/__pycache__
+
+# Setuptools
+/build
+/dist
+/*.egg-info

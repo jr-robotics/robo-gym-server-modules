@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package robo_gym_server_manager.grpc_msgs.server_manager;
+
+service ServerManager {
+  rpc StartNewServer(RobotServer)   returns (RobotServer) {}
+  rpc KillServer(RobotServer)       returns (RobotServer) {}
+  rpc KillAllServers(RobotServer)   returns (RobotServer) {}
+  rpc VerifyConnection(Empty)       returns (Status) {}
+}
+
+message RobotServer {
+  string   cmd      = 1;
+  bool     gui      = 2;
+  int32    port     = 3;
+  bool     success  = 4;
+  string   info     = 5;
+}
+
+message Empty {
+}
+
+message Status {
+  bool alive = 1;
+}
