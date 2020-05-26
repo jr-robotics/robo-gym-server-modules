@@ -9,7 +9,7 @@ class Client():
         self.robot_server_stub = robot_server_pb2_grpc.RobotServerStub(self.channel)
 
     def set_state(self, state):
-        msg = self.robot_server_stub.SetState(robot_server_pb2.State(state = state), timeout = 20)
+        msg = self.robot_server_stub.SetState(robot_server_pb2.State(state = state), timeout = 60)
         return msg.success
 
     def get_state(self,):

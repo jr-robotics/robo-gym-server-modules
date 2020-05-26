@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='robo-gym-server-modules',
-    version='0.1.0',
+    version='0.1.1',
     description='Robot Servers and Server Manager code for robo-gym',
     url='https://github.com/jr-robotics/robo-gym-server-modules',
     author="Matteo Lucchi, Friedemann Zindler",

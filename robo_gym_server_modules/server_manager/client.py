@@ -18,7 +18,7 @@ class Client():
             try:
                 print('Starting new Robot Server | Tentative {}'.format(str(i+1)))
                 rl_server = self.stub.StartNewServer(request= server_manager_pb2.RobotServer(cmd= cmd, \
-                                                                                             gui= gui), timeout =60)
+                                                                                             gui= gui), timeout =240)
 
                 if rl_server.success:
                     print('Successfully started Robot Server at {}:{}'.format(self.ip,str(rl_server.port)))
@@ -81,5 +81,5 @@ class Client():
         raise RuntimeError("Failed to connect to Server Manager")
 
     def _verify_connection(self):
-        
+
         return self.stub.VerifyConnection(server_manager_pb2.Empty(), timeout=20).alive
