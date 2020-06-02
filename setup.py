@@ -1,8 +1,12 @@
 import setuptools
+import sys, os
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'robo_gym_server_modules'))
+from version import VERSION
 
 setuptools.setup(
     name='robo-gym-server-modules',
-    version='0.1.1',
+    version=VERSION,
     description='Robot Servers and Server Manager code for robo-gym',
     url='https://github.com/jr-robotics/robo-gym-server-modules',
     author="Matteo Lucchi, Friedemann Zindler",
