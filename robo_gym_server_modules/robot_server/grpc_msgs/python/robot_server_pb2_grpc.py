@@ -16,7 +16,7 @@ class RobotServerStub(object):
         """
         self.GetState = channel.unary_unary(
                 '/robot_server.RobotServer/GetState',
-                request_serializer=robot__server__pb2.State.SerializeToString,
+                request_serializer=robot__server__pb2.Empty.SerializeToString,
                 response_deserializer=robot__server__pb2.State.FromString,
                 )
         self.SetState = channel.unary_unary(
@@ -57,7 +57,7 @@ def add_RobotServerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetState': grpc.unary_unary_rpc_method_handler(
                     servicer.GetState,
-                    request_deserializer=robot__server__pb2.State.FromString,
+                    request_deserializer=robot__server__pb2.Empty.FromString,
                     response_serializer=robot__server__pb2.State.SerializeToString,
             ),
             'SetState': grpc.unary_unary_rpc_method_handler(
@@ -92,7 +92,7 @@ class RobotServer(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/robot_server.RobotServer/GetState',
-            robot__server__pb2.State.SerializeToString,
+            robot__server__pb2.Empty.SerializeToString,
             robot__server__pb2.State.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
