@@ -13,7 +13,7 @@ class Client():
         return msg.success
 
     def get_state(self,):
-        msg = self.robot_server_stub.GetState(robot_server_pb2.State(), timeout = 20)
+        msg = self.robot_server_stub.GetState(robot_server_pb2.Empty(), timeout = 20)
         if msg.success == 1:
             return msg.state
         else:
