@@ -2,7 +2,6 @@
 *.pyc
 *.py~
 *.ipynb_checkpoints
-*.log
 
 robo_gym_server_manager/grpc_msgs/python3/__pycache__
 
