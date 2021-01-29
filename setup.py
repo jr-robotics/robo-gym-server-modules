@@ -12,6 +12,7 @@ setuptools.setup(
     author="Matteo Lucchi, Friedemann Zindler",
     author_email="matteo.lucchi@joanneum.at, friedemann.zindler@joanneum.at",
     packages=setuptools.find_packages(),
+    include_package_data=True,
     classifiers=[
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.5',
@@ -22,7 +23,8 @@ setuptools.setup(
     install_requires=[
     'grpcio',
     'protobuf',
-    'libtmux'
+    'libtmux',
+    'pyyaml'
     ],
     python_requires='>=2.7',
     scripts = [ 'bin/attach-to-server-manager',

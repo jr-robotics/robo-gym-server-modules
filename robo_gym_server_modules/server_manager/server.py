@@ -7,7 +7,9 @@ import time
 import socket
 from contextlib import closing
 from concurrent import futures
-import logging
+import logging, logging.config
+import yaml
+import os
 
 from robo_gym_server_modules.robot_server.client import Client
 from robo_gym_server_modules.server_manager.grpc_msgs.python3 import server_manager_pb2, server_manager_pb2_grpc
@@ -165,32 +167,15 @@ def serve():
     except KeyboardInterrupt:
         server.stop(0)
 
-
 def initialize_logger():
     global logger 
-    # timestamp = time.strftime("%Y%m%d-%H%M%S")
-    logger = logging.getLogger('server_manager_logger')
-    logger.setLevel(logging.DEBUG)
-
-    # create a file handler
-    handler = logging.FileHandler('logs/server_manager.log', mode='w')
-    handler.setLevel(logging.DEBUG)
-
-    # create a logging format
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-
-    consoleHandler = logging.StreamHandler()
-    consoleHandler.setFormatter(formatter)
-    consoleHandler.setLevel(logging.INFO)
-
-    # add the handlers to the logger
-    logger.addHandler(handler)   
-    logger.addHandler(consoleHandler) 
-    logger.debug('Logger initialized')
     
-
-
+    package_path = os.path.join(os.path.dirname(__file__), '..', '..')
+    with open(os.path.join(package_path, 'logging_config.yml'), 'r') as stream:
+        config = yaml.safe_load(stream)
+    config['handlers']['file']['filename'] = os.path.join(package_path, config['handlers']['file']['filename'] )
+    logging.config.dictConfig(config)
+    logger = logging.getLogger('serverManager')
 
 if __name__== "__main__":
     try:
