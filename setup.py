@@ -13,6 +13,7 @@ setuptools.setup(
     author_email="matteo.lucchi@joanneum.at, friedemann.zindler@joanneum.at",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    # data_files=[('robo_gym_server_modules', ['logging_config.yml'])],
     classifiers=[
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.5',

@@ -1,1 +1,2 @@
-include logging_config.yml
+include robo_gym_server_modules/logging_config.yml
+include robo_gym_server_modules/logs/*

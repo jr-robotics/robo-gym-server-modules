@@ -170,7 +170,7 @@ def serve():
 def initialize_logger():
     global logger 
     
-    package_path = os.path.join(os.path.dirname(__file__), '..', '..')
+    package_path = os.path.join(os.path.dirname(__file__), '..')
     with open(os.path.join(package_path, 'logging_config.yml'), 'r') as stream:
         config = yaml.safe_load(stream)
     config['handlers']['file']['filename'] = os.path.join(package_path, config['handlers']['file']['filename'] )
