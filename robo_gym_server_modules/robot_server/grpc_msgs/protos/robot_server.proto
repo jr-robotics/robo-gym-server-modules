@@ -5,9 +5,10 @@ package robot_server;
 
 
 service  RobotServer {
-  rpc GetState(Empty)        returns (State) {}
-  rpc SetState(State)        returns (Success) {}
-  rpc SendAction(Action)     returns (Success) {}
+  rpc GetState(Empty)             returns (State) {}
+  rpc SetState(State)             returns (Success) {}
+  rpc SendAction(Action)          returns (Success) {}
+  rpc SendActionGetState(Action)  returns (State) {}
 }
 
 message Success {

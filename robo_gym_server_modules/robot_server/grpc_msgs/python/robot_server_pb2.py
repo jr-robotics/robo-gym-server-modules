@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x12robot_server.proto\x12\x0crobot_server\"\x1a\n\x07Success\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x07\n\x05\x45mpty\")\n\x06\x41\x63tion\x12\x0e\n\x06\x61\x63tion\x18\x01 \x03(\x02\x12\x0f\n\x07success\x18\x02 \x01(\x08\"\x8a\x02\n\x05State\x12\r\n\x05state\x18\x01 \x03(\x02\x12:\n\x0c\x66loat_params\x18\x02 \x03(\x0b\x32$.robot_server.State.FloatParamsEntry\x12<\n\rstring_params\x18\x03 \x03(\x0b\x32%.robot_server.State.StringParamsEntry\x12\x0f\n\x07success\x18\x04 \x01(\x08\x1a\x32\n\x10\x46loatParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x1a\x33\n\x11StringParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x32\xbc\x01\n\x0bRobotServer\x12\x36\n\x08GetState\x12\x13.robot_server.Empty\x1a\x13.robot_server.State\"\x00\x12\x38\n\x08SetState\x12\x13.robot_server.State\x1a\x15.robot_server.Success\"\x00\x12;\n\nSendAction\x12\x14.robot_server.Action\x1a\x15.robot_server.Success\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x12robot_server.proto\x12\x0crobot_server\"\x1a\n\x07Success\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x07\n\x05\x45mpty\")\n\x06\x41\x63tion\x12\x0e\n\x06\x61\x63tion\x18\x01 \x03(\x02\x12\x0f\n\x07success\x18\x02 \x01(\x08\"\x8a\x02\n\x05State\x12\r\n\x05state\x18\x01 \x03(\x02\x12:\n\x0c\x66loat_params\x18\x02 \x03(\x0b\x32$.robot_server.State.FloatParamsEntry\x12<\n\rstring_params\x18\x03 \x03(\x0b\x32%.robot_server.State.StringParamsEntry\x12\x0f\n\x07success\x18\x04 \x01(\x08\x1a\x32\n\x10\x46loatParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x1a\x33\n\x11StringParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x32\xff\x01\n\x0bRobotServer\x12\x36\n\x08GetState\x12\x13.robot_server.Empty\x1a\x13.robot_server.State\"\x00\x12\x38\n\x08SetState\x12\x13.robot_server.State\x1a\x15.robot_server.Success\"\x00\x12;\n\nSendAction\x12\x14.robot_server.Action\x1a\x15.robot_server.Success\"\x00\x12\x41\n\x12SendActionGetState\x12\x14.robot_server.Action\x1a\x13.robot_server.State\"\x00\x62\x06proto3'
 )
 
 
@@ -315,7 +315,7 @@ _ROBOTSERVER = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=386,
-  serialized_end=574,
+  serialized_end=641,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetState',
@@ -344,6 +344,16 @@ _ROBOTSERVER = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_ACTION,
     output_type=_SUCCESS,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SendActionGetState',
+    full_name='robot_server.RobotServer.SendActionGetState',
+    index=3,
+    containing_service=None,
+    input_type=_ACTION,
+    output_type=_STATE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

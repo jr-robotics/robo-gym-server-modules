@@ -7,6 +7,9 @@ import time
 import socket
 from contextlib import closing
 from concurrent import futures
+import logging, logging.config
+import yaml
+import os
 
 from robo_gym_server_modules.robot_server.client import Client
 from robo_gym_server_modules.server_manager.grpc_msgs.python3 import server_manager_pb2, server_manager_pb2_grpc
@@ -92,6 +95,7 @@ class ServerManager():
                 pass
             except AssertionError as a_error:
                 pass
+        logger.error('Could not start rl_bridge_server')
         return('Could not start rl_bridge_server')
 
 
@@ -102,32 +106,33 @@ class ServerManagerServicer(server_manager_pb2_grpc.ServerManagerServicer):
 
     def __del__(self):
         self.srv_mngr.kill_server()
-        print("tmux server killed")
+        logger.info('tmux server killed')
 
     def StartNewServer(self, request, context):
 
+        logger.debug('StartNewServer...')
         try:
             rl_msg = server_manager_pb2.RobotServer()
             rl_server = self.srv_mngr.add_rl_server(cmd= request.cmd, gui= request.gui)
             assert isinstance(rl_server, int)
             rl_msg.port = rl_server
             rl_msg.success = 1
-            print ("Robot Server started at {} successfully".format(repr(rl_server)))
+            logger.info('Robot Server started at %s successfully', repr(rl_server))
             return rl_msg
 
         except:
-            print("Failed to add Robot Server")
+            logger.error('Failed to add Robot Server', exc_info=True)
             return server_manager_pb2.RobotServer(success=0)
 
     def KillServer(self, request, context):
         try:
             assert request.port
             assert self.srv_mngr.kill_session(repr(request.port))
-            print ("Robot Server " + repr(request.port) + " killed")
+            logger.info('Robot Server ' + repr(request.port) + ' killed')
             return server_manager_pb2.RobotServer(success=1)
 
         except:
-            print ("Failed to kill Robot Server " + repr(request.port))
+            logger.error('Failed to add Robot Server ' + repr(request.port), exc_info=True)
             return server_manager_pb2.RobotServer(success=0)
 
     def KillAllServers(self, request, context):
@@ -135,7 +140,7 @@ class ServerManagerServicer(server_manager_pb2_grpc.ServerManagerServicer):
         try:
             self.srv_mngr.kill_server()
             self.srv_mngr = ServerManager()
-            print ("All servers killed")
+            logger.info('All servers killed')
             return server_manager_pb2.RobotServer(success=1)
         except:
             return server_manager_pb2.RobotServer(success=0)
@@ -148,23 +153,29 @@ class ServerManagerServicer(server_manager_pb2_grpc.ServerManagerServicer):
 
 
 def serve():
+    initialize_logger()
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     server_manager_pb2_grpc.add_ServerManagerServicer_to_server(
         ServerManagerServicer(),server)
     port = find_free_port(50100,50200)
     server.add_insecure_port('[::]:'+repr(port))
     server.start()
-    print("Server Manager started at " +repr(port))
+    logger.info('Server Manager started at ' +repr(port))
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
     except KeyboardInterrupt:
         server.stop(0)
 
-
-
-
-
+def initialize_logger():
+    global logger 
+    
+    package_path = os.path.join(os.path.dirname(__file__), '..', '..')
+    with open(os.path.join(package_path, 'logging_config.yml'), 'r') as stream:
+        config = yaml.safe_load(stream)
+    config['handlers']['file']['filename'] = os.path.join(package_path, config['handlers']['file']['filename'] )
+    logging.config.dictConfig(config)
+    logger = logging.getLogger('serverManager')
 
 if __name__== "__main__":
     try:

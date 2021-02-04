@@ -35,3 +35,10 @@ class Client():
     def send_action(self, action):
         msg = self.robot_server_stub.SendAction(robot_server_pb2.Action(action = action), timeout = 20 )
         return msg.success
+
+    def send_action_get_state(self, action):
+        msg = self.robot_server_stub.SendActionGetState(robot_server_pb2.Action(action = action), timeout = 20 )
+        if msg.success == 1:
+            return msg
+        else:
+            raise Exception('Error while retrieving state')
