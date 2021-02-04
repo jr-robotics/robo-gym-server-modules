@@ -20,3 +20,12 @@ pip install robo-gym-server-modules
 `kill-server-manager` : Kill the Server Manager
 
 `kill-all-robot-servers` : Kill all the existing Robot Servers
+
+## Additional info
+
+### How to manually generate python code for the RobotServer
+
+From the repository root folder:
+```
+ python -m grpc_tools.protoc -Irobo_gym_server_modules/robot_server/grpc_msgs/protos --python_out=robo_gym_server_modules/robot_server/grpc_msgs/python/. --grpc_python_out=robo_gym_server_modules/robot_server/grpc_msgs/python/. robo_gym_server_modules/robot_server/grpc_msgs/protos/robot_server.proto
+```
