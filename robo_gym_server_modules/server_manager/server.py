@@ -92,8 +92,10 @@ class ServerManager():
                 assert (len(test_client.get_state())> 1)
                 return (grpc_port)
             except grpc.RpcError as rpc_error:
+                logger.error('Failed to get state from Robot Server', exc_info=True)
                 pass
             except AssertionError as a_error:
+                logger.error('Length of Robot Serve state received is not > 1', exc_info=True)
                 pass
         logger.error('Could not start rl_bridge_server')
         return('Could not start rl_bridge_server')
