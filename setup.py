@@ -31,5 +31,6 @@ setuptools.setup(
     scripts = [ 'bin/attach-to-server-manager',
                 'bin/kill-all-robot-servers',
                 'bin/kill-server-manager',
-                'bin/start-server-manager'],
+                'bin/start-server-manager',
+                'bin/restart-server-manager'],
 )
