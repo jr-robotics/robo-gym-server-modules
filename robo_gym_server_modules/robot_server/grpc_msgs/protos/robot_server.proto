@@ -27,5 +27,6 @@ message State {
   repeated float state                    = 1;
   map<string, float> float_params         = 2;
   map<string, string> string_params       = 3; 
-  bool success                            = 4;
+  map<string, float> state_dict           = 4;
+  bool success                            = 5;
 }
