@@ -85,20 +85,22 @@ class ServerManager():
         server_pane.send_keys(cmd="{} gui:={} server_port:={}".format(cmd, ("true" if gui else "false"),repr(grpc_port)) ,suppress_history = False)
 
         time.sleep(10)
+        logger.info('Trying to get state from Robot Server...')
         for i in range(10):
             time.sleep(5)
             try:
+                logger.info('Tentative ' + str(i))
                 test_client= Client('localhost:'+repr(grpc_port))
                 assert (len(test_client.get_state())> 1)
                 return (grpc_port)
-            except grpc.RpcError as rpc_error:
-                logger.error('Failed to get state from Robot Server', exc_info=True)
+            except grpc.RpcError:
+                logger.debug('Failed to get state from Robot Server', exc_info=True)
                 pass
-            except AssertionError as a_error:
-                logger.error('Length of Robot Serve state received is not > 1', exc_info=True)
+            except AssertionError:
+                logger.debug('Length of Robot Serve state received is not > 1', exc_info=True)
                 pass
-        logger.error('Could not start rl_bridge_server')
-        return('Could not start rl_bridge_server')
+        logger.error('Could not start Robot Server', exc_info= True)
+        return None
 
 
 
@@ -111,8 +113,7 @@ class ServerManagerServicer(server_manager_pb2_grpc.ServerManagerServicer):
         logger.info('tmux server killed')
 
     def StartNewServer(self, request, context):
-
-        logger.debug('StartNewServer...')
+        logger.info('Starting Robot Server...')
         try:
             rl_msg = server_manager_pb2.RobotServer()
             rl_server = self.srv_mngr.add_rl_server(cmd= request.cmd, gui= request.gui)
