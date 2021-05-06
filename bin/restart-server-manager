@@ -2,4 +2,10 @@
 
 tmux -L ServerManager kill-server
 tmux kill-server
-tmux new-session -d -s "server_manager" python -c 'import robo_gym_server_modules.server_manager.server as server; server.serve()'
+if [[ $(lsb_release -rs) == "18.04" ]]; then 
+
+       tmux new-session -d -s "server_manager" python -c 'import robo_gym_server_modules.server_manager.server as server; server.serve()'
+else
+       tmux new-session -d -s "server_manager" python3 -c 'import robo_gym_server_modules.server_manager.server as server; server.serve()'
+
+fi
