@@ -78,9 +78,6 @@ class ServerManager():
         gazebo_port = find_free_port()
         server_pane.send_keys(cmd = ("export GAZEBO_MASTER_URI=http://localhost:"+repr(gazebo_port)), suppress_history = False)
 
-        if gui:
-            server_pane.send_keys(cmd = ("export DISPLAY=:0"), suppress_history = False)
-
         # Launch simulation
         server_pane.send_keys(cmd="{} gui:={} server_port:={}".format(cmd, ("true" if gui else "false"),repr(grpc_port)) ,suppress_history = False)
 
