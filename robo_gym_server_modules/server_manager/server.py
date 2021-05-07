@@ -84,9 +84,8 @@ class ServerManager():
         time.sleep(10)
         logger.info('Trying to get state from Robot Server...')
         for i in range(10):
-            time.sleep(5)
             try:
-                logger.info('Tentative ' + str(i))
+                logger.info('Tentative ' + str(i) + ' of 10')
                 test_client= Client('localhost:'+repr(grpc_port))
                 assert (len(test_client.get_state())> 1)
                 return (grpc_port)
@@ -96,6 +95,8 @@ class ServerManager():
             except AssertionError:
                 logger.debug('Length of Robot Serve state received is not > 1', exc_info=True)
                 pass
+            logger.info('Waiting 5s before next tentative ...')
+            time.sleep(5)
         logger.error('Could not start Robot Server', exc_info= True)
         return None
 
