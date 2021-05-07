@@ -41,13 +41,13 @@ class ServerManager():
     def kill_session(self, session_name):
 
         if self.tmux_srv.has_session(session_name):
-            session = self.tmux_srv.find_where({"session_name":session_name})
+            session = self.tmux_srv.find_where({'session_name':session_name})
             if session is None:
                 return False
-            window = session.select_window("grpc_server")
+            window = session.select_window('grpc_server')
             pane = window.attached_pane
             # Send Ctrl-C to kill all processes properly
-            pane.send_keys(cmd = ("C-c"), suppress_history = False)
+            pane.send_keys(cmd = ('C-c'), suppress_history = False)
             # Wait some time to allow to kill processes
             time.sleep(15)
             # Kill tmux session
@@ -69,24 +69,24 @@ class ServerManager():
         grpc_port = find_free_port()
 
         session = self.new_session(name = repr(grpc_port))
-        server_w = session.new_window(window_name = "grpc_server")
+        server_w = session.new_window(window_name = 'grpc_server')
         server_pane = server_w.attached_pane
 
         ros_port = find_free_port()
-        server_pane.send_keys(cmd = ("export ROS_MASTER_URI=http://localhost:"+repr(ros_port)), suppress_history = False)
+        server_pane.send_keys(cmd= 'export ROS_MASTER_URI=http://localhost:{}'.format(repr(ros_port)), suppress_history = False)
 
         gazebo_port = find_free_port()
-        server_pane.send_keys(cmd = ("export GAZEBO_MASTER_URI=http://localhost:"+repr(gazebo_port)), suppress_history = False)
+        server_pane.send_keys(cmd= 'export GAZEBO_MASTER_URI=http://localhost:{}'.format(repr(gazebo_port)), suppress_history = False)
 
         # Launch simulation
-        server_pane.send_keys(cmd="{} gui:={} server_port:={}".format(cmd, ("true" if gui else "false"),repr(grpc_port)) ,suppress_history = False)
+        server_pane.send_keys(cmd= '{} gui:={} server_port:={}'.format(cmd, ('true' if gui else 'false'),repr(grpc_port)) ,suppress_history = False)
 
         time.sleep(10)
         logger.info('Trying to get state from Robot Server...')
         for i in range(10):
             try:
-                logger.info('Tentative ' + str(i) + ' of 10')
-                test_client= Client('localhost:'+repr(grpc_port))
+                logger.info('Tentative {} of 10'.format(str(i)))
+                test_client= Client('localhost:{}'.format(repr(grpc_port)))
                 assert (len(test_client.get_state())> 1)
                 return (grpc_port)
             except grpc.RpcError:
@@ -129,11 +129,11 @@ class ServerManagerServicer(server_manager_pb2_grpc.ServerManagerServicer):
         try:
             assert request.port
             assert self.srv_mngr.kill_session(repr(request.port))
-            logger.info('Robot Server ' + repr(request.port) + ' killed')
+            logger.info('Robot Server {} killed'.format(repr(request.port)))
             return server_manager_pb2.RobotServer(success=1)
 
         except:
-            logger.error('Failed to add Robot Server ' + repr(request.port), exc_info=True)
+            logger.error('Failed to add Robot Server {}'.format(repr(request.port)), exc_info=True)
             return server_manager_pb2.RobotServer(success=0)
 
     def KillAllServers(self, request, context):
@@ -159,9 +159,9 @@ def serve():
     server_manager_pb2_grpc.add_ServerManagerServicer_to_server(
         ServerManagerServicer(),server)
     port = find_free_port(50100,50200)
-    server.add_insecure_port('[::]:'+repr(port))
+    server.add_insecure_port('[::]:{}'.format(repr(port)))
     server.start()
-    logger.info('Server Manager started at ' +repr(port))
+    logger.info('Server Manager started at {}'.format(repr(port)))
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
@@ -178,7 +178,7 @@ def initialize_logger():
     logging.config.dictConfig(config)
     logger = logging.getLogger('serverManager')
 
-if __name__== "__main__":
+if __name__== '__main__':
     try:
         serve()
     except (KeyboardInterrupt, SystemExit):

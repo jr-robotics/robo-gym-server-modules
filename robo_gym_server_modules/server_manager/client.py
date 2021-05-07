@@ -23,7 +23,7 @@ class Client():
 
                 if rl_server.success:
                     print('Successfully started Robot Server at {}:{}'.format(self.ip,str(rl_server.port)))
-                    return (self.ip + ':'+str(rl_server.port))
+                    return ('{}:{}'.format(self.ip,str(rl_server.port)))
                 else:
                     pass
             except:
@@ -73,7 +73,7 @@ class Client():
 
         for port in range(lower_bound_port,upper_bound_port):
             try:
-                self.channel = grpc.insecure_channel((ip + ':' + str(port)))
+                self.channel = grpc.insecure_channel('{}:{}'.format(ip,str(port)))
                 self.stub = server_manager_pb2_grpc.ServerManagerStub(self.channel)
                 self.ip = ip
                 self._verify_connection()
