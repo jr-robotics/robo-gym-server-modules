@@ -3,15 +3,15 @@
 Robot Servers and Server Manager software for robo-gym.
 
 For info on how to use this package please visit the [robo-gym website](https://sites.google.com/view/robo-gym) or the main [robo-gym repository](https://github.com/jr-robotics/robo-gym).
-## Install
+# Install
 
 ```
 pip install robo-gym-server-modules
 ```
 
-## Server Manager
+# Server Manager
 
-### How to use
+## How to use
 
 The commands to control the Server Manager are:
 
@@ -22,9 +22,30 @@ The commands to control the Server Manager are:
 - `kill-server-manager` kills the Server Manager
 - `restart-server-manager` kills all the running Robot Servers and the Server Manager and starts the Server Manager in the background
 
-## Additional info
+## Testing 
 
-### How to manually generate python code for the RobotServer
+Start the Server Manager and attach to the session with: 
+
+```sh
+start-server-manager && attach-to-server-manager
+```
+Expected output:
+
+```sh
+2021-XX-XX XX:XX:XX,XXX - serverManager - INFO - Server Manager started at 50100
+```
+
+If you get: `start-server-manager: command not found` it is most probably because your `$PATH` is not set correctly, to fix the problem add:
+
+```bash
+export PATH="/home/<your_username>/.local/bin:$PATH"
+```
+
+to your `.bashrc` file. 
+
+# Additional info
+
+## How to manually generate python code for the RobotServer
 
 From the repository root folder:
 ```
