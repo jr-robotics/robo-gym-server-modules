@@ -43,6 +43,17 @@ export PATH="/home/<your_username>/.local/bin:$PATH"
 
 to your `.bashrc` file. 
 
+## Troubleshooting
+
+The Server Manager starts the Robot Server/s in a [tmux](https://github.com/tmux/tmux/wiki) session. To access the session of the Robot Server, first connect to the tmux server with:
+```sh
+tmux -L ServerManager 
+```
+Then navigate to the session with `Ctrl+b  )`
+
+[Tmux cheat sheet](https://tmuxcheatsheet.com/)
+
+
 # Additional info
 
 ## How to manually generate python code for the RobotServer
