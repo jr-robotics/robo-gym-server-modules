@@ -13,13 +13,14 @@ pip install robo-gym-server-modules
 
 ### How to use
 
-`start-server-manager` : Start the Server Manager in the background
+The commands to control the Server Manager are:
 
-`attach-to-server-manager` : Attach to Server Manager sessions to see its status
-
-`kill-server-manager` : Kill the Server Manager
-
-`kill-all-robot-servers` : Kill all the existing Robot Servers
+- `start-server-manager` starts the Server Manager in the background
+- `attach-to-server-manager` attaches the console to the Server Manager tmux session allowing to visualize the status of the Server Manager
+- `Ctrl+B, D` detaches the console from the Server Manager tmux session
+- `kill-all-robot-servers` kills all the running Robot Servers and the Server Manager
+- `kill-server-manager` kills the Server Manager
+- `restart-server-manager` kills all the running Robot Servers and the Server Manager and starts the Server Manager in the background
 
 ## Additional info
 
