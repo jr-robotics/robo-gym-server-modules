@@ -83,9 +83,10 @@ class ServerManager():
 
         time.sleep(10)
         logger.info('Trying to get state from Robot Server...')
-        for i in range(10):
+        max_tentatives = 20
+        for i in range(max_tentatives):
             try:
-                logger.info('Tentative {} of 10'.format(str(i)))
+                logger.info('Tentative {} of {}'.format(str(i),max_tentatives))
                 test_client= Client('localhost:{}'.format(repr(grpc_port)))
                 assert (len(test_client.get_state())> 1)
                 return (grpc_port)
