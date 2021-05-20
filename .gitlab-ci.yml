@@ -15,4 +15,8 @@ deploy_production:
   script:
     - twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
   only:
-    - tags
+    - /^v.*$/
+  except:
+    refs:
+      - branches
+      - triggers
