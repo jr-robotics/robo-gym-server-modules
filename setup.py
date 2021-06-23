@@ -4,6 +4,11 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'robo_gym_server_modules'))
 from version import VERSION
 
+if sys.version_info.major == 2:
+    libtmux = 'libtmux==0.8.5'
+else:
+    libtmux = 'libtmux'
+
 setuptools.setup(
     name='robo-gym-server-modules',
     version=VERSION,
@@ -24,7 +29,7 @@ setuptools.setup(
     install_requires=[
     'grpcio',
     'protobuf',
-    'libtmux',
+    libtmux,
     'pyyaml'
     ],
     python_requires='>=2.7',
