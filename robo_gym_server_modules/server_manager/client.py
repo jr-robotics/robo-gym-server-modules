@@ -62,7 +62,7 @@ class Client():
                 pass
             i+=1
 
-        raise RuntimeError('Failed {} tentatives of killing Robot Server'.forma(str(max_tentatives)))
+        raise RuntimeError('Failed {} tentatives of killing Robot Server'.format(str(max_tentatives)))
 
     def kill_all(self):
 
