@@ -6,7 +6,9 @@ For info on how to use this package please visit the [robo-gym website](https://
 # Install
 
 ```
-pip install robo-gym-server-modules
+git clone https://github.com/tinhangchui/robo-gym-server-modules.git
+cd robo-gym-server-modules
+pip install -e .
 ```
 
 # Server Manager

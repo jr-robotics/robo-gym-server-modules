@@ -2,12 +2,11 @@ import grpc
 from robo_gym_server_modules.robot_server.grpc_msgs.python import robot_server_pb2, robot_server_pb2_grpc
 
 class Client():
-
     def __init__(self, ip):
 
         self.channel = grpc.insecure_channel(ip)
         self.robot_server_stub = robot_server_pb2_grpc.RobotServerStub(self.channel)
-
+        
     def set_state(self, state):
         # Old method, to be gradually replaced in all the stack
         msg = self.robot_server_stub.SetState(robot_server_pb2.State(state = state), timeout = 60)
@@ -15,6 +14,10 @@ class Client():
 
     def set_state_msg(self, state_msg):
         msg = self.robot_server_stub.SetState(state_msg, timeout = 60)
+        return msg.success
+
+    def reset_state_msg(self, state_msg):
+        msg = self.robot_server_stub.ResetState(state_msg, timeout = 20)
         return msg.success
 
     def get_state(self,):
@@ -38,6 +41,21 @@ class Client():
 
     def send_action_get_state(self, action):
         msg = self.robot_server_stub.SendActionGetState(robot_server_pb2.Action(action = action), timeout = 20 )
+        if msg.success == 1:
+            return msg
+        else:
+            raise Exception('Error while retrieving state')
+
+    def send_goal_get_plan(self, goal_list):
+        msg = self.robot_server_stub.SendGoalGetPlan(robot_server_pb2.MoveitGoal(pose = goal_list), timeout = 200 )
+        # plan should be allowed to fail, so only raise exception when timeout
+        if msg:
+            return msg
+        else:
+            raise Exception('Error while retrieving plan')
+            
+    def send_strict_action_get_state(self, action):
+        msg = self.robot_server_stub.StrictActionGetState(robot_server_pb2.Action(action = action), timeout = 100 )
         if msg.success == 1:
             return msg
         else:

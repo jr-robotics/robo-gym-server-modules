@@ -88,7 +88,7 @@ class ServerManager():
             try:
                 logger.info('Tentative {} of {}'.format(str(i),max_tentatives))
                 test_client= Client('localhost:{}'.format(repr(grpc_port)))
-                assert (len(test_client.get_state())> 1)
+                assert (len(test_client.get_state_msg().state_dict.keys()) >= 1)
                 return (grpc_port)
             except grpc.RpcError:
                 logger.debug('Failed to get state from Robot Server', exc_info=True)
