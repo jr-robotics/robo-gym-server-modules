@@ -9,3 +9,5 @@ robo_gym_server_manager/grpc_msgs/python3/__pycache__
 /build
 /dist
 /*.egg-info
+/.vscode
+/.idea
