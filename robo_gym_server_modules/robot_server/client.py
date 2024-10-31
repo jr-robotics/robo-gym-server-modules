@@ -42,3 +42,11 @@ class Client():
             return msg
         else:
             raise Exception('Error while retrieving state')
+        
+    # New method to get parameters
+    def get_arguments(self,):
+        msg = self.robot_server_stub.GetArguments(robot_server_pb2.Empty(), timeout=20)
+        if msg.success == 1:
+            return msg
+        else:
+            raise Exception("Error while retrieving parameters")

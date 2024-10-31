@@ -5,10 +5,21 @@ package robot_server;
 
 
 service  RobotServer {
-  rpc GetState(Empty)             returns (State) {}
-  rpc SetState(State)             returns (Success) {}
-  rpc SendAction(Action)          returns (Success) {}
-  rpc SendActionGetState(Action)  returns (State) {}
+  rpc GetState(Empty)                 returns (State) {}
+  rpc SetState(State)                 returns (Success) {}
+  rpc SendAction(Action)              returns (Success) {}
+  rpc SendActionGetState(Action)      returns (State) {}
+
+  // New RPCs for parameter synchronization between server and environment
+  rpc GetArguments(Empty)             returns (Arguments) {}
+}
+
+// Add new messages for parameter communication
+message Arguments {
+  float action_cycle_rate     = 1;
+  string rs_mode              = 2;
+  string action_mode          = 3;
+  bool success                = 4;
 }
 
 message Success {

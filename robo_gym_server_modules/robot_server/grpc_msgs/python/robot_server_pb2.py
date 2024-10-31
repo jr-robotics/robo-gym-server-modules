@@ -19,10 +19,63 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x12robot_server.proto\x12\x0crobot_server\"\x1a\n\x07Success\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x07\n\x05\x45mpty\")\n\x06\x41\x63tion\x12\x0e\n\x06\x61\x63tion\x18\x01 \x03(\x02\x12\x0f\n\x07success\x18\x02 \x01(\x08\"\xf4\x02\n\x05State\x12\r\n\x05state\x18\x01 \x03(\x02\x12:\n\x0c\x66loat_params\x18\x02 \x03(\x0b\x32$.robot_server.State.FloatParamsEntry\x12<\n\rstring_params\x18\x03 \x03(\x0b\x32%.robot_server.State.StringParamsEntry\x12\x36\n\nstate_dict\x18\x04 \x03(\x0b\x32\".robot_server.State.StateDictEntry\x12\x0f\n\x07success\x18\x05 \x01(\x08\x1a\x32\n\x10\x46loatParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x1a\x33\n\x11StringParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x30\n\x0eStateDictEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x32\xff\x01\n\x0bRobotServer\x12\x36\n\x08GetState\x12\x13.robot_server.Empty\x1a\x13.robot_server.State\"\x00\x12\x38\n\x08SetState\x12\x13.robot_server.State\x1a\x15.robot_server.Success\"\x00\x12;\n\nSendAction\x12\x14.robot_server.Action\x1a\x15.robot_server.Success\"\x00\x12\x41\n\x12SendActionGetState\x12\x14.robot_server.Action\x1a\x13.robot_server.State\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x12robot_server.proto\x12\x0crobot_server\"]\n\tArguments\x12\x19\n\x11\x61\x63tion_cycle_rate\x18\x01 \x01(\x02\x12\x0f\n\x07rs_mode\x18\x02 \x01(\t\x12\x13\n\x0b\x61\x63tion_mode\x18\x03 \x01(\t\x12\x0f\n\x07success\x18\x04 \x01(\x08\"\x1a\n\x07Success\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x07\n\x05\x45mpty\")\n\x06\x41\x63tion\x12\x0e\n\x06\x61\x63tion\x18\x01 \x03(\x02\x12\x0f\n\x07success\x18\x02 \x01(\x08\"\xf4\x02\n\x05State\x12\r\n\x05state\x18\x01 \x03(\x02\x12:\n\x0c\x66loat_params\x18\x02 \x03(\x0b\x32$.robot_server.State.FloatParamsEntry\x12<\n\rstring_params\x18\x03 \x03(\x0b\x32%.robot_server.State.StringParamsEntry\x12\x36\n\nstate_dict\x18\x04 \x03(\x0b\x32\".robot_server.State.StateDictEntry\x12\x0f\n\x07success\x18\x05 \x01(\x08\x1a\x32\n\x10\x46loatParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x1a\x33\n\x11StringParamsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x30\n\x0eStateDictEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x32\xbf\x02\n\x0bRobotServer\x12\x36\n\x08GetState\x12\x13.robot_server.Empty\x1a\x13.robot_server.State\"\x00\x12\x38\n\x08SetState\x12\x13.robot_server.State\x1a\x15.robot_server.Success\"\x00\x12;\n\nSendAction\x12\x14.robot_server.Action\x1a\x15.robot_server.Success\"\x00\x12\x41\n\x12SendActionGetState\x12\x14.robot_server.Action\x1a\x13.robot_server.State\"\x00\x12>\n\x0cGetArguments\x12\x13.robot_server.Empty\x1a\x17.robot_server.Arguments\"\x00\x62\x06proto3'
 )
 
 
+
+
+_ARGUMENTS = _descriptor.Descriptor(
+  name='Arguments',
+  full_name='robot_server.Arguments',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='action_cycle_rate', full_name='robot_server.Arguments.action_cycle_rate', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='rs_mode', full_name='robot_server.Arguments.rs_mode', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='action_mode', full_name='robot_server.Arguments.action_mode', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='success', full_name='robot_server.Arguments.success', index=3,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=36,
+  serialized_end=129,
+)
 
 
 _SUCCESS = _descriptor.Descriptor(
@@ -52,8 +105,8 @@ _SUCCESS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=36,
-  serialized_end=62,
+  serialized_start=131,
+  serialized_end=157,
 )
 
 
@@ -77,8 +130,8 @@ _EMPTY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=64,
-  serialized_end=71,
+  serialized_start=159,
+  serialized_end=166,
 )
 
 
@@ -116,8 +169,8 @@ _ACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=73,
-  serialized_end=114,
+  serialized_start=168,
+  serialized_end=209,
 )
 
 
@@ -155,8 +208,8 @@ _STATE_FLOATPARAMSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=336,
-  serialized_end=386,
+  serialized_start=431,
+  serialized_end=481,
 )
 
 _STATE_STRINGPARAMSENTRY = _descriptor.Descriptor(
@@ -193,8 +246,8 @@ _STATE_STRINGPARAMSENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=388,
-  serialized_end=439,
+  serialized_start=483,
+  serialized_end=534,
 )
 
 _STATE_STATEDICTENTRY = _descriptor.Descriptor(
@@ -231,8 +284,8 @@ _STATE_STATEDICTENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=441,
-  serialized_end=489,
+  serialized_start=536,
+  serialized_end=584,
 )
 
 _STATE = _descriptor.Descriptor(
@@ -290,8 +343,8 @@ _STATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=117,
-  serialized_end=489,
+  serialized_start=212,
+  serialized_end=584,
 )
 
 _STATE_FLOATPARAMSENTRY.containing_type = _STATE
@@ -300,11 +353,19 @@ _STATE_STATEDICTENTRY.containing_type = _STATE
 _STATE.fields_by_name['float_params'].message_type = _STATE_FLOATPARAMSENTRY
 _STATE.fields_by_name['string_params'].message_type = _STATE_STRINGPARAMSENTRY
 _STATE.fields_by_name['state_dict'].message_type = _STATE_STATEDICTENTRY
+DESCRIPTOR.message_types_by_name['Arguments'] = _ARGUMENTS
 DESCRIPTOR.message_types_by_name['Success'] = _SUCCESS
 DESCRIPTOR.message_types_by_name['Empty'] = _EMPTY
 DESCRIPTOR.message_types_by_name['Action'] = _ACTION
 DESCRIPTOR.message_types_by_name['State'] = _STATE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+Arguments = _reflection.GeneratedProtocolMessageType('Arguments', (_message.Message,), {
+  'DESCRIPTOR' : _ARGUMENTS,
+  '__module__' : 'robot_server_pb2'
+  # @@protoc_insertion_point(class_scope:robot_server.Arguments)
+  })
+_sym_db.RegisterMessage(Arguments)
 
 Success = _reflection.GeneratedProtocolMessageType('Success', (_message.Message,), {
   'DESCRIPTOR' : _SUCCESS,
@@ -370,8 +431,8 @@ _ROBOTSERVER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=492,
-  serialized_end=747,
+  serialized_start=587,
+  serialized_end=906,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetState',
@@ -410,6 +471,16 @@ _ROBOTSERVER = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_ACTION,
     output_type=_STATE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetArguments',
+    full_name='robot_server.RobotServer.GetArguments',
+    index=4,
+    containing_service=None,
+    input_type=_EMPTY,
+    output_type=_ARGUMENTS,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
