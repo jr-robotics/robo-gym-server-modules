@@ -61,4 +61,13 @@ Then navigate to the session with `Ctrl+b  )`
 From the repository root folder:
 ```
  python -m grpc_tools.protoc -Irobo_gym_server_modules/robot_server/grpc_msgs/protos --python_out=robo_gym_server_modules/robot_server/grpc_msgs/python/. --grpc_python_out=robo_gym_server_modules/robot_server/grpc_msgs/python/. robo_gym_server_modules/robot_server/grpc_msgs/protos/robot_server.proto
+
 ```
+# Contributing
+[back to top](#robo-gym)
+
+- [f4rh4ng](https://github.com/f4rh4ng): Contributed to the development of the initial Panda robot integration.
+
+New environments and new robots and sensors implementations are welcome!
+
+More details and guides on how to contribute will be added soon!
