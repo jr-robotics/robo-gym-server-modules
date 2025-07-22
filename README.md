@@ -62,3 +62,17 @@ From the repository root folder:
 ```
  python -m grpc_tools.protoc -Irobo_gym_server_modules/robot_server/grpc_msgs/protos --python_out=robo_gym_server_modules/robot_server/grpc_msgs/python/. --grpc_python_out=robo_gym_server_modules/robot_server/grpc_msgs/python/. robo_gym_server_modules/robot_server/grpc_msgs/protos/robot_server.proto
 ```
+
+# Acknowledgements 
+
+![euROBIN logo](docs/media/eurobin.png)
+
+Partially developed in the course of the 1st Open Call of [euROBIN](https://www.eurobin-project.eu/).
+
+![Funded by the European Union](docs/media/funded_by_the_eu.png)
+
+Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or European Commission. Neither the European Union nor the granting authority can be held responsible for them.
+
+## External contributors
+
+- [Farhang Fadaei](https://github.com/f4rh4ng): Contributed to the development of the initial Panda robot integration.
